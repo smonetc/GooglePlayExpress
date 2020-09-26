@@ -14,7 +14,7 @@ app.get('/apps', (req, res) => {
     const { search = "", sort, genres } = req.query
 
     if (sort){
-        if(!['rating','app'].includes(sort)){
+        if(!['Rating','App'].includes(sort)){
             return res
                 .status(400)
                 .send('Sort must be one of title or rank')
@@ -38,8 +38,9 @@ app.get('/apps', (req, res) => {
             })
     }
     if (genres) {
-        results
-            .sort()
+        results.filter( function (app){
+            return app.Genres === 'Genres'
+        })
     }
 
     res.
