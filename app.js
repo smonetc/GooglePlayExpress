@@ -17,7 +17,7 @@ app.get('/apps', (req, res) => {
         if(!['Rating','App'].includes(sort)){
             return res
                 .status(400)
-                .send('Sort must be one of title or rank')
+                .send('Sort must be one of rating or app')
         }
     }
 
@@ -38,8 +38,8 @@ app.get('/apps', (req, res) => {
             })
     }
     if (genres) {
-        results.filter( function (app){
-            return app.Genres === 'Genres'
+        results.filter( function (result){
+            return result.Genres === genres
         })
     }
 
@@ -47,6 +47,4 @@ app.get('/apps', (req, res) => {
         json(results)
 })
 
-app.listen(8000, () => {
-    console.log('Server started on Port 8000')
-})
+module.exports = app
